@@ -11,11 +11,11 @@ def Leer_HORAS_TRABAJADAS(): #Función para leer las horas trabajadas
 def LEER_TARIFA(): #Función para leer la tarifa
     while True:
         TARIFA = input("Introduce la tarifa (puede ser un número decimal): ")
-        if TARIFA.replace('.', '', 1).isdigit() or TARIFA.replace(',', '', 1).isdigit(): #Comprobamos si es un número entero
+        if TARIFA.replace('.', '', 1).isdigit() and TARIFA.count('.') == 1:  #  #Comprobamos si es un número entero
             TARIFA = float(TARIFA) #Convertir la entrada a un número flotante
-            break
+            break # Salir del bucle si es un float
         else:
-            print("Por favor, introduce un número válido (puede ser decimal).")
+            print("Por favor, introduce un número válido (puede ser decimal con punto).")
     return TARIFA
 
 HORAS_TRABAJADAS = Leer_HORAS_TRABAJADAS()
@@ -26,7 +26,7 @@ if HORAS_TRABAJADAS <= 40:
     # Si las horas trabajadas son 40 o menos, no hay horas extras
     SUELDO = HORAS_TRABAJADAS * TARIFA
 else:
-    # Si las horas trabajadas son más de 40, se calculan las 40 horas con la tarifa base y las horas extras con un incremento del 50% sobre la tarifa base.
+    # Si las horas trabajadas son más de 40, se calculan las 40 horas con la tarifa base y las horas extras con un incremento del 50% sobre la tarifa base
     HORAS_EXTRAS = HORAS_TRABAJADAS - 40
     SUELDO = (40 * TARIFA) + HORAS_EXTRAS * TARIFA * (1 + 50/100)
 
